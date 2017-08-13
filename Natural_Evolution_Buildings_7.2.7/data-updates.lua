@@ -19,7 +19,10 @@ data.raw.item["alien-artifact"].icon = "__Natural_Evolution_Buildings__/graphics
 
 ----- Updates to Ammo
 --data.raw.ammo["firearm-magazine"].icon = "__Natural_Evolution_Buildings__/graphics/icons/firearm_magazine_iron.png"
-data.raw.ammo["piercing-rounds-magazine"].icon = "__Natural_Evolution_Buildings__/graphics/icons/piercing_magazine_iron.png"
+--data.raw.ammo["piercing-rounds-magazine"].icon = "__Natural_Evolution_Buildings__/graphics/icons/piercing_magazine_iron.png"
+data.raw.recipe["piercing-rounds-magazine"].icon = "__Natural_Evolution_Buildings__/graphics/icons/piercing_magazine_iron.png"
+data.raw.ammo["piercing-rounds-magazine"].icon = "__base__/graphics/icons/piercing-rounds-magazine.png"
+
 
 if not NE_Buildings_Config.mod.BobWarfare then
 	if data.raw.ammo["piercing-rounds-magazine"].ammo_type and
