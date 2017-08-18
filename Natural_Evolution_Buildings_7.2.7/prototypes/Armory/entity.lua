@@ -1,5 +1,5 @@
 
-
+require ("util")
 
 
 if settings.startup["NE_Difficulty"] and settings.startup["NE_Difficulty"].value then
@@ -10,8 +10,6 @@ else
 end
 
 Bio_Ammo_Damage = settings.startup["NE_Bio_Ammo_Damage"].value
-
-require ("util")
 
 
 --- Bio Ammo
@@ -205,12 +203,35 @@ data:extend({
   	
 })
 
+
+function turret_pic(inputs)
+return
+{
+	layers = 
+	{
+		{
+			filename = "__Natural_Evolution_Buildings__/graphics/entity/ne_turret.png",
+			priority = "medium",
+			scale = 0.5,
+			width = 224,
+			height = 160,
+			direction_count = inputs.direction_count and inputs.direction_count or 64,
+			frame_count = 1,
+			line_length = inputs.line_length and inputs.line_length or 8,
+			axially_symmetrical = false,
+			run_mode = inputs.run_mode and inputs.run_mode or "forward",
+			shift = { 0, 0 },
+		}
+	}
+}
+end
+
 --- Turret
 data:extend({ 
   {
     type = "ammo-turret",
     name = "NE-gun-turret",
-    icon = "__base__/graphics/icons/gun-turret.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_turret_icon.png",
     flags = {"placeable-player", "player-creation"},
     minable = {mining_time = 0.5, result = "NE-gun-turret"},
     max_health = 400,
@@ -224,7 +245,14 @@ data:extend({
     inventory_size = 1,
     automated_ammo_count = 10,
     attacking_speed = 0.05,
-    folded_animation = 
+   
+	folded_animation = turret_pic{direction_count = 8, line_length = 1},
+	preparing_animation = turret_pic{direction_count = 8, line_length = 1},
+	prepared_animation = turret_pic{},
+	attacking_animation = turret_pic{},
+	folding_animation = turret_pic{direction_count = 8, line_length = 1, run_mode = "backward"},
+--[[  
+  folded_animation = 
     {
       layers =
       {
@@ -281,7 +309,8 @@ data:extend({
         }
       }
     },
-    vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },
+   ]]
+   vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },
     
     attack_parameters =
     {
