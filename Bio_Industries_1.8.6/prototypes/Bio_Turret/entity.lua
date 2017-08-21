@@ -46,7 +46,7 @@ data:extend({
 		},
 		magazine_size = 10,
 		subgroup = "ammo",
-		order = "a[basic-clips]-aaa[dart-magazine]-[basic-dart-magazine]",
+		order = "[aaa]-a[basic-clips]-aa[firearm-magazine]",
 		stack_size = 400
   },
   
@@ -93,7 +93,7 @@ data:extend({
 		},
 		magazine_size = 10,
 		subgroup = "ammo",
-				order = "a[basic-clips]-aaa[dart-magazine]-[enhanced-dart-magazine]",
+		order = "[aab]-a[basic-clips]-ab[firearm-magazine]",
 		stack_size = 400
   },
   
