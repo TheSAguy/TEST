@@ -19,10 +19,10 @@ data:extend({
     {
     type = "item",
     name = "NE-gun-turret",
-    icon = "__base__/graphics/icons/gun-turret.png",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_turret_icon.png",
     flags = {"goes-to-quickbar"},
     subgroup = "defensive-structure",
-    order = "b[turret]-x[gun-turret]",
+    order = "a[turret]-x[gun-turret]",
     place_result = "NE-gun-turret",
     stack_size = 50
   },

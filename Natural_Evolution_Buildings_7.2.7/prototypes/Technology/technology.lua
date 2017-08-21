@@ -26,10 +26,10 @@ data:extend({
 		prerequisites = {"advanced-electronics"},
 		unit =
 		{
-		  count = 50,
+		  count = 75,
 		  ingredients =
 		  {
-			{"science-pack-1", 2},
+			{"science-pack-1", 1},
 			{"science-pack-2", 1}
 		  },
 		  time = 50
@@ -65,11 +65,11 @@ data:extend({
 		prerequisites = {"AlienUnderstanding"},
 		unit =
 		{
-		  count = 100,
+		  count = 150,
 		  ingredients =
 		  {
-			{"science-pack-1", 3},
-			{"science-pack-2", 2},
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
 			{"science-pack-3", 1}
 		  },
 		  time = 50
@@ -87,12 +87,12 @@ data:extend({
 		prerequisites = {"AlienUnderstanding-2"},
 		unit =
 		{
-		  count = 150,
+		  count = 250,
 		  ingredients =
 		  {
-			{"science-pack-1", 4},
-			{"science-pack-2", 3},
-			{"science-pack-3", 2},
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
+			{"science-pack-3", 1},
 			{"production-science-pack", 1}
 		  },
 		  time = 50
@@ -121,10 +121,10 @@ data:extend({
 		prerequisites = {"AlienUnderstanding"},
 		unit =
 		{
-		  count = 75,
+		  count = 100,
 		  ingredients =
 		  {
-			{"science-pack-1", 2},
+			{"science-pack-1", 1},
 			{"science-pack-2", 1}
 		  },
 		  time = 50
@@ -148,12 +148,12 @@ data:extend({
 		prerequisites = {"AlienUnderstanding-2","TerraformingStation"},
 		unit =
 		{
-		  count = 75,
+		  count = 4000,
 		  ingredients =
 		  {
-			{"science-pack-1", 3},
-			{"science-pack-2", 2},
-			{"production-science-pack", 75}
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
+			{"production-science-pack", 1}
 		  },
 		  time = 50
 		},
@@ -177,13 +177,13 @@ data:extend({
 		prerequisites = {"AlienUnderstanding-3","TerraformingStation-2"},
 		unit =
 		{
-		  count = 75,
+		  count = 5000,
 		  ingredients =
 		  {
-			{"science-pack-1", 4},
-			{"science-pack-2", 3},
-			{"science-pack-3", 2},
-			{"high-tech-science-pack", 75}
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
+			{"science-pack-3", 1},
+			{"high-tech-science-pack", 1}
 		  },
 		  time = 50
 		},
@@ -208,12 +208,12 @@ data:extend({
 		prerequisites = {"AlienUnderstanding-2", "effect-transmission"},
 		unit =
 		{
-		  count = 50,
+		  count = 200,
 		  ingredients =
 		  {
-			{"science-pack-1", 6},
-			{"science-pack-2", 6},
-			{"science-pack-3", 2}
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
+			{"science-pack-3", 1}
 		  },
 		  time = 50
 		},
@@ -242,10 +242,10 @@ data:extend({
 		prerequisites = {"AlienUnderstanding-2"},
 		unit =
 		{
-		  count = 75,
+		  count = 100,
 		  ingredients =
 		  {
-			{"science-pack-1", 2},
+			{"science-pack-1", 1},
 			{"science-pack-2", 1}
 		  },
 		  time = 50
@@ -273,12 +273,12 @@ data:extend({
 		prerequisites = {"AlienUnderstanding-3"},
 		unit =
 		{
-		  count = 150,
+		  count = 250,
 		  ingredients =
 		  {
-			{"science-pack-1", 4},
-			{"science-pack-2", 3},
-			{"science-pack-3", 2},
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
+			{"science-pack-3", 1},
 			{"production-science-pack", 1}
 		  },
 		  time = 50
@@ -306,12 +306,12 @@ data:extend({
 		prerequisites = {"AlienUnderstanding-3"},
 		unit =
 		{
-		  count = 250,
+		  count = 350,
 		  ingredients =
 		  {
-			{"science-pack-1", 4},
-			{"science-pack-2", 3},
-			{"science-pack-3", 2},
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
+			{"science-pack-3", 1},
 			{"production-science-pack", 1}
 		  },
 		  time = 50
@@ -348,11 +348,11 @@ data:extend({
 		prerequisites = {"Alien_Hatchery"},
 		unit =
 		{
-		  count = 75,
+		  count = 100,
 		  ingredients =
 		  {
-			{"science-pack-1", 3},
-			{"science-pack-2", 2},
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
 			{"science-pack-3", 1}
 		  },
 		  time = 50
@@ -387,11 +387,11 @@ data:extend({
 		prerequisites = {"Breeding"},
 		unit =
 		{
-		  count = 100,
+		  count = 200,
 		  ingredients =
 		  {
-			{"science-pack-1", 3},
-			{"science-pack-2", 2},
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
 			{"science-pack-3", 1}
 		  },
 		  time = 50
@@ -426,11 +426,11 @@ data:extend({
 		prerequisites = {"Breeding-2"},
 		unit =
 		{
-		  count = 150,
+		  count = 300,
 		  ingredients =
 		  {
-			{"science-pack-1", 3},
-			{"science-pack-2", 2},
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
 			{"science-pack-3", 1},
 			{"production-science-pack", 1}
 		  },
@@ -459,12 +459,12 @@ data:extend({
 		prerequisites = {"Breeding-3"},
 		unit =
 		{
-		  count = 200,
+		  count = 400,
 		  ingredients =
 		  {
-			{"science-pack-1", 4},
-			{"science-pack-2", 3},
-			{"science-pack-3", 2},
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
+			{"science-pack-3", 1},
 			{"production-science-pack", 1}
 		  },
 		  time = 50
@@ -510,11 +510,11 @@ data:extend({
 		prerequisites = {"AlienUnderstanding-2"},
 		unit =
 		{
-		  count = 75,
+		  count = 150,
 		  ingredients =
 		  {
-			{"science-pack-1", 3},
-			{"science-pack-2", 2},
+			{"science-pack-1", 1},
+			{"science-pack-2", 1},
 			{"science-pack-3", 1}
 		  },
 		  time = 50

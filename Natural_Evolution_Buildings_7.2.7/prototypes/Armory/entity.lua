@@ -133,14 +133,14 @@ data:extend({
     dying_explosion = "explosion-hit",
     picture_safe =
     {
-      filename = "__Natural_Evolution_Buildings__/graphics/entity/bio_land_mine.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/bio_land_mine.png",
       priority = "medium",
       width = 32,
       height = 32
     },
     picture_set =
     {
-      filename = "__Natural_Evolution_Buildings__/graphics/entity/bio_land_mine_set.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/bio_land_mine_set.png",
       priority = "medium",
       width = 32,
       height = 32
@@ -203,6 +203,7 @@ data:extend({
   	
 })
 
+--[[
 
 function turret_pic(inputs)
 return
@@ -210,7 +211,7 @@ return
 	layers = 
 	{
 		{
-			filename = "__Natural_Evolution_Buildings__/graphics/entity/ne_turret.png",
+			filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret.png",
 			priority = "medium",
 			scale = 0.5,
 			width = 224,
@@ -220,7 +221,30 @@ return
 			line_length = inputs.line_length and inputs.line_length or 8,
 			axially_symmetrical = false,
 			run_mode = inputs.run_mode and inputs.run_mode or "forward",
-			shift = { 0, 0 },
+			shift = { 0.5, 0 },
+		}
+	}
+}
+end
+]]
+
+function turret_pic(inputs)
+return
+{
+	layers = 
+	{
+		{
+			filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret.png",
+			priority = "medium",
+			scale = 0.5,
+			width = 256,
+			height = 256,
+			direction_count = inputs.direction_count and inputs.direction_count or 64,
+			frame_count = 1,
+			line_length = inputs.line_length and inputs.line_length or 8,
+			axially_symmetrical = false,
+			run_mode = inputs.run_mode and inputs.run_mode or "forward",
+			--shift = { 0.5, 0 },
 		}
 	}
 }
@@ -251,65 +275,7 @@ data:extend({
 	prepared_animation = turret_pic{},
 	attacking_animation = turret_pic{},
 	folding_animation = turret_pic{direction_count = 8, line_length = 1, run_mode = "backward"},
---[[  
-  folded_animation = 
-    {
-      layers =
-      {
-        gun_turret_extension{frame_count=1, line_length = 1},
-        gun_turret_extension_mask{frame_count=1, line_length = 1},
-        gun_turret_extension_shadow{frame_count=1, line_length = 1}
-      }
-    },
-    preparing_animation = 
-    {
-      layers =
-      {
-        gun_turret_extension{},
-        gun_turret_extension_mask{},
-        gun_turret_extension_shadow{}
-      }
-    },
-    prepared_animation = gun_turret_attack{frame_count=1},
-    attacking_animation = gun_turret_attack{},
-    folding_animation = 
-    { 
-      layers = 
-      { 
-        gun_turret_extension{run_mode = "backward"},
-        gun_turret_extension_mask{run_mode = "backward"},
-        gun_turret_extension_shadow{run_mode = "backward"}
-      }
-    },
-    base_picture =
-    {
-      layers =
-      {
-        {
-          filename = "__base__/graphics/entity/gun-turret/gun-turret-base.png",
-          priority = "high",
-          width = 90,
-          height = 75,
-          axially_symmetrical = false,
-          direction_count = 1,
-          frame_count = 1,
-          shift = {0, -0.046875},
-        },
-        {
-          filename = "__base__/graphics/entity/gun-turret/gun-turret-base-mask.png",
-          flags = { "mask" },
-          line_length = 1,
-          width = 52,
-          height = 47,
-          axially_symmetrical = false,
-          direction_count = 1,
-          frame_count = 1,
-          shift = {0, -0.234375},
-          apply_runtime_tint = true
-        }
-      }
-    },
-   ]]
+
    vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },
     
     attack_parameters =

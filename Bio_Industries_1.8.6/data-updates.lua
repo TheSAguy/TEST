@@ -10,7 +10,7 @@ require ("libs.technology-functions") -- From Bob's Libary
 ----Update the Wood Pipe Images
 require ("prototypes.Wood_Products.pipes")
 --- Update the Rail Images
-require ("prototypes.Wood_Products.wooden_rail_bridge_update.lua")
+require ("prototypes.Wood_Products.wooden_rail_bridge_update")
 require ("prototypes.Wood_Products.tint_rails_remnants_function")
 
 	-- Concrete Rail

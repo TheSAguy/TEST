@@ -1,6 +1,6 @@
 inv_extension =
 {
-	filename = "__Natural_Evolution_Buildings__/graphics/entity/TerraformingStation.png",
+	filename = "__Natural_Evolution_Buildings__/graphics/entities/Terraforming_Station/TerraformingStation.png",
 	priority = "low",
       width = 153,
       height = 131,
@@ -13,7 +13,7 @@ inv_extension =
 inv_extension2 =
 {
 	{
-      filename = "__Natural_Evolution_Buildings__/graphics/entity/TerraformingStation.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/Terraforming_Station/TerraformingStation.png",
       priority = "low",
       width = 153,
       height = 131,
@@ -74,7 +74,7 @@ data:extend({
    
 	},
 
-
+--[[
   --- Ammo Turret (Inv) -- OLD from v. 7.1.7 Replaced since 7.2.0
 	{
 		type = "ammo-turret",
@@ -119,7 +119,7 @@ data:extend({
 	},
 
 		
---[[
+
 	---- Terraforming Station
   {
     type = "radar",
@@ -151,7 +151,7 @@ data:extend({
     energy_usage = "600kW",
     pictures =
     {
-      filename = "__Natural_Evolution_Buildings__/graphics/entity/TerraformingStation.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/TerraformingStation.png",
       priority = "low",
       width = 153,
       height = 131,
@@ -198,7 +198,7 @@ data:extend({
     energy_usage = "600kW",
     pictures =
     {
-      filename = "__Natural_Evolution_Buildings__/graphics/entity/TerraformingStation.png",
+      filename = "__Natural_Evolution_Buildings__/graphics/entities/Terraforming_Station/TerraformingStation.png",
       priority = "high",
       width = 153,
       height = 131,
@@ -212,39 +212,6 @@ data:extend({
   
 
   
-	  
-  --[[
-  -- Container
-   {
-		type = "container",
-		name = "TerraformingStation_c",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/TerraformingStation.png",
-		flags = {"not-deconstructable", "not-on-map", "placeable-off-grid", "not-repairable", "not-blueprintable"},
-		selectable_in_game = false,
-		open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
-		close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
-		--minable = {hardness = 0.2, mining_time = 0.5, result = "TerraformingStation"},
-
-		max_health = 300,
-		corpse = "big-remnants",
-		dying_explosion = "medium-explosion",
-		resistances = {},
-		collision_box = {{0, 0}, {0, 0}},
-		selection_box = {{0, 0}, {0, 0}},
-		collision_mask = {},
-		order = "b[TerraformingStation]-a[TerraformingStation]",
-		inventory_size = 1,
-		picture =
-		{
-		  filename = "__Natural_Evolution_Buildings__/graphics/entity/TerraformingStation.png",
-		  priority = "low",
-		  width = 153,
-		  height = 131,
-		  direction_count = 1,
-		  line_length = 1,
-		  shift = {0.875, -0.35}
-		},
-	},
-  ]]
+	
 	
 	})
