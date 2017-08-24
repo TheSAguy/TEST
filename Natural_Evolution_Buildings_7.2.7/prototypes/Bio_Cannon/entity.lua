@@ -52,6 +52,7 @@ data:extend({
 			ammo_category = "Bio_Cannon_Ammo",
 			cooldown = 2,
 			range = 85,
+			min_range = 20,
 			projectile_creation_distance = 1.8,
 			action ={}
 		},

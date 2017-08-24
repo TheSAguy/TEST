@@ -228,81 +228,318 @@ return
 end
 ]]
 
-function turret_pic(inputs)
+
+function base_picture()
+return
+{
+	layers =
+	{
+	  {
+		 filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png",
+		 priority = "high",
+		 width = 256,
+		 height = 256,
+		 axially_symmetrical = false,
+		 direction_count = 1,
+		 frame_count = 1,
+	  }
+	}
+ }
+end
+
+function preparing_animation()
+	return {layers = {{
+		priority = "medium",
+		width = 256,
+		height = 256,
+		direction_count = 4, -- folding[1],
+		frame_count = 16,  -- folding[2],
+		line_length = 8, -- folding[3],
+		run_mode = "forward",
+		axially_symmetrical = false,
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png",
+		}}}
+end
+
+function prepared_animation(frame_count)
+	return {layers = {{
+		priority = "medium",
+		width = 256,
+		height = 256,
+		direction_count = 64, -- main [1],
+		frame_count = 1, -- -- always 1
+		line_length = 8, -- main [3],
+		axially_symmetrical = false,
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png",
+		}}}
+end
+
+function attacking_animation()
+	return {layers = {{
+		priority = "medium",
+		width = 256,
+		height = 256,
+		direction_count = 64, -- main [1],
+		frame_count = 1, -- -- can be 2 or 3, when you have attacking animation; 1 for no animated
+		line_length = 8, -- main [3],
+		run_mode = "forward",
+		axially_symmetrical = false,
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png",
+		}}}
+end
+
+function folding_animation()
+	return {layers = {{
+		priority = "medium",
+		width = 256,
+		height = 256,
+		direction_count = 4, -- folding[1],
+		frame_count = 16, -- folding[2],
+		line_length = 8, -- folding[3],
+		run_mode = "backward",
+		axially_symmetrical = false,
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png",
+}}}
+end
+
+function folded_animation()
+	return {layers = {{
+		priority = "medium",
+		width = 256,
+		height = 256,
+		direction_count = 4, -- folding[1],
+		frame_count = 2, -- idk why, for skipping second sprite
+		line_length = 1,
+		run_mode = "forward",
+		axially_symmetrical = false,
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png",
+		}}}
+end
+
+
+--- Bio Turret
+function bio_turret_pic(inputs)
+
 return
 {
 	layers = 
 	{
 		{
-			filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret.png",
+			filename = "__Natural_Evolution_Buildings__/graphics/entities/bio_turret/bio_turret.png",
 			priority = "medium",
 			scale = 0.5,
-			width = 256,
-			height = 256,
+			width = 224,
+			height = 160,
 			direction_count = inputs.direction_count and inputs.direction_count or 64,
 			frame_count = 1,
 			line_length = inputs.line_length and inputs.line_length or 8,
 			axially_symmetrical = false,
 			run_mode = inputs.run_mode and inputs.run_mode or "forward",
-			--shift = { 0.5, 0 },
+			shift = { 0.25, -0.25 },
 		}
 	}
 }
 end
 
+
+
 --- Turret
 data:extend({ 
+
+ --- NE Conversion turret
   {
     type = "ammo-turret",
     name = "NE-gun-turret",
     icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_turret_icon.png",
+   	flags = {"placeable-player", "player-creation"},
+	minable = {mining_time = 0.5, result = entity_name},
+	max_health = 400,
+	corpse = "medium-remnants",
+	--collision_box = {{-0.7, -0.7 }, {0.7, 0.7}},
+	collision_box = {{-1.4, -1.4 }, {1.4, 1.4}},
+	--selection_box = {{-1, -1 }, {1, 1}},
+	selection_box = {{-1.5, -1.5 }, {1.5, 1.5}},
+	rotation_speed = 0.002,
+	prepare_range = 35,
+	preparing_speed = 0.006,
+	folding_speed = 0.006,
+	dying_explosion = "medium-explosion",
+	inventory_size = 1,
+	automated_ammo_count = 10,
+	attacking_speed = 1/2/3.75, --0.02, -- just animation
+	base_picture = base_picture (),
+
+	preparing_animation = preparing_animation(),
+	prepared_animation = prepared_animation(),
+	attacking_animation = attacking_animation(),
+	folding_animation =folding_animation(),
+	folded_animation = folded_animation(),
+	
+	vehicle_impact_sound =  {filename = "__base__" .. "/sound/car-metal-impact.ogg", volume = 0.65},
+    
+	attack_parameters =
+		{
+		type = "projectile",
+		ammo_category = "bullet",
+		cooldown = 30, -- in ticks; 60 is 1 shoot / sec
+		projectile_creation_distance = 3.4, 
+		projectile_center = {0,0},
+		range = 34,
+		sound = make_heavy_gunshot_sounds(),
+		damage_modifier = 3.1
+		},
+
+	call_for_help_radius = 40
+	},
+ 
+ 
+	--- Basic Dart
+	{
+		type = "ammo",
+		name = "basic-dart-magazine",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/basic_dart_icon.png",
+		flags = {"goes-to-main-inventory"},
+		ammo_type =
+		{
+		  category = "Bio_Turret_Ammo",
+		  action =
+		  {
+			type = "direct",
+			action_delivery =
+			{
+			  type = "instant",
+			  source_effects =
+			  {
+				  type = "create-explosion",
+				  entity_name = "explosion-gunshot",
+			  },
+			  target_effects =
+			  {
+				{
+				  type = "create-entity",
+				  entity_name = "explosion-hit"
+				},
+				{
+				  type = "damage",
+				  
+				  damage = { amount = 1 , type = "poison"}
+				 
+				},
+				{
+				  type = "damage",
+				  damage = { amount = 2 , type = "physical"}
+				}
+			  }
+			}
+		  }
+		},
+		magazine_size = 10,
+		subgroup = "ammo",
+		order = "[aaa]-a[basic-clips]-aa[firearm-magazine]",
+		stack_size = 400
+  },
+  
+  
+	--- Enhanced Dart
+	{
+		type = "ammo",
+		name = "enhanced-dart-magazine",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/enhanced_dart_icon.png",
+		flags = {"goes-to-main-inventory"},
+		ammo_type =
+		{
+		  category = "Bio_Turret_Ammo",
+		  action =
+		  {
+			type = "direct",
+			action_delivery =
+			{
+			  type = "instant",
+			  source_effects =
+			  {
+				  type = "create-explosion",
+				  entity_name = "explosion-gunshot",
+			  },
+			  target_effects =
+			  {
+				{
+				  type = "create-entity",
+				  entity_name = "explosion-hit"
+				},
+				{
+				  type = "damage",
+				  
+				  damage = { amount = 1 , type = "poison"}
+				 
+				},
+				{
+				  type = "damage",
+				  damage = { amount = 2.5 , type = "bob-pierce"}
+				}
+			  }
+			}
+		  }
+		},
+		magazine_size = 10,
+		subgroup = "ammo",
+		order = "[aab]-a[basic-clips]-ab[firearm-magazine]",
+		stack_size = 400
+  },
+  
+
+
+ 
+ --- Dart Turret
+  {
+    type = "ammo-turret",
+    name = "bio-turret",
+    icon = "__Natural_Evolution_Buildings__/graphics/icons/bio_turret_icon.png",
     flags = {"placeable-player", "player-creation"},
-    minable = {mining_time = 0.5, result = "NE-gun-turret"},
-    max_health = 400,
+    minable = {mining_time = 0.25, result = "bio-turret"},
+    max_health = 250,
     corpse = "medium-remnants",
-    collision_box = {{-0.7, -0.7 }, {0.7, 0.7}},
-    selection_box = {{-1, -1 }, {1, 1}},
-    rotation_speed = 0.015,
+	 
+	 -- darkfrei: just another size of boxes, that's all
+    collision_box = {{-0.4, -0.4 }, {0.4, 0.4}},
+    selection_box = {{-.4, -.4 }, {.4, .4}},
+    rotation_speed = 0.05,
     preparing_speed = 0.08,
     folding_speed = 0.08,
     dying_explosion = "medium-explosion",
     inventory_size = 1,
     automated_ammo_count = 10,
-    attacking_speed = 0.05,
+    attacking_speed = 1, -- makes nothing, it's animation's parameter
    
-	folded_animation = turret_pic{direction_count = 8, line_length = 1},
-	preparing_animation = turret_pic{direction_count = 8, line_length = 1},
-	prepared_animation = turret_pic{},
-	attacking_animation = turret_pic{},
-	folding_animation = turret_pic{direction_count = 8, line_length = 1, run_mode = "backward"},
+	folded_animation = bio_turret_pic{direction_count = 8, line_length = 1},
+	preparing_animation = bio_turret_pic{direction_count = 8, line_length = 1},
+	prepared_animation = bio_turret_pic{},
+	attacking_animation = bio_turret_pic{},
+	folding_animation = bio_turret_pic{direction_count = 8, line_length = 1, run_mode = "backward"},
 
-   vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },
+
+   vehicle_impact_sound =  { filename = "__base__/sound/car-wood-impact.ogg", volume = 1.0 }, 
     
     attack_parameters =
     {
       type = "projectile",
-      --ammo_category = "NE_Conversion_Ammo",
-	  ammo_category = "bullet",
-      cooldown = 20,  --- default 6
-      projectile_creation_distance = 1.39375,
-      projectile_center = {0, -0.0875}, -- same as gun_turret_attack shift
-      shell_particle =
-      {
-        name = "shell-particle",
-        direction_deviation = 0.1,
-        speed = 0.1,
-        speed_deviation = 0.03,
-        center = {-0.0625, 0},
-        creation_distance = -1.925,
-        starting_frame_speed = 0.2,
-        starting_frame_speed_deviation = 0.1
+      ammo_category = "Bio_Turret_Ammo",
+      cooldown = 3.6,  -- cooldown = 6 -- darkfrei: means cooldown 6/60 sec or 10 shoots at second; = 60 is one shoot/sec
+      projectile_creation_distance = 1.41,
+	  projectile_center = {-0.0625, 0.55},
+
+      range = 20,
+	  sound =
+	  {
+        filename = "__Natural_Evolution_Buildings__/sound/dart-turret.ogg",
+        volume = 0.85
       },
-      range = 18,
-      sound = make_heavy_gunshot_sounds(),
     },
 
     call_for_help_radius = 40
   },
  
 
+ 
+ 
+ 
 })

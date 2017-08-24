@@ -43,7 +43,7 @@ local function Bio_Cannon_Check(Bio_Cannon_List)
 				for _,enemy in pairs(spawner) do
 					local distance = math.sqrt(((Bio_Cannon.position.x - enemy.position.x)^2) +((Bio_Cannon.position.y - enemy.position.y)^2) )
 					writeDebug("The Distance is: " .. distance)
-					if (distance > 10) and (distance < (radius2+1)) then
+					if (distance > 20) and (distance < (radius2+1)) then
 					
 						if target == nil then
 							target={enemy}
