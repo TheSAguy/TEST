@@ -587,7 +587,7 @@ local function On_Death(event)
 	
 	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause then --and event.cause.name == "alien" then
 	
-		if event.cause.name == "NE-gun-turret" then
+		--if event.cause.name == "NE-gun-turret" then
 
 			local name = entity.name
 			local inventory = event.cause.get_inventory(1)
@@ -603,12 +603,13 @@ local function On_Death(event)
 			end
 			
 			writeDebug("Ammo Type: " .. AmmoType)
-			writeDebug("Ammo Count: " .. Ammo)
+			--writeDebug("Ammo Count: " .. Ammo)
+			if AmmoType == "ne-conversion-ammo" then
+				Convert = surface.create_entity({name = name, position = pos, force = event.cause.force.name})
+				Convert.health = entity.prototype.max_health / 4
+			end
 			
-			Convert = surface.create_entity({name = name, position = pos, force = event.cause.force.name})
-			Convert.health = entity.prototype.max_health / 4
-				
-		end
+		--end
 			
 	end
 	

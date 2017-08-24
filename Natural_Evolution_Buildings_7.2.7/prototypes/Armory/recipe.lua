@@ -96,6 +96,71 @@ data:extend({
 		  result_count = 1,
 		},
 	}, 	
+	
+	--- Conversion Ammo Copper
+	{
+		type = "recipe",
+		name = "ne_conversion_ammo_copper",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_ammo_copper.png",
+		order = "x1[basic-clips]-b[piercing-rounds-magazine]-d[ne-conversion-ammo]",
+		normal =
+		{
+			enabled = true,
+			energy_required = 3,
+			ingredients = 
+			{
+			  {"copper-bullet-magazine", 10},
+			  {"alien-artifact", 1},
+			},
+		  result = "ne-conversion-ammo",
+		  result_count = 10,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 5,
+			ingredients = 
+			{
+			  {"copper-bullet-magazine", 10},
+			  {"alien-artifact", 1},
+			},
+		  result = "ne-conversion-ammo",
+		  result_count = 10,
+		},
+	}, 	
+	
+		--- Conversion Ammo Iron
+	{
+		type = "recipe",
+		name = "ne_conversion_ammo_iron",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_ammo_iron.png",
+		order = "x2[basic-clips]-b[piercing-rounds-magazine]-d[ne-conversion-ammo]",
+		normal =
+		{
+			enabled = true,
+			energy_required = 3,
+			ingredients = 
+			{
+			  {"firearm-magazine", 10},
+			  {"alien-artifact", 1},
+			},
+		  result = "ne-conversion-ammo",
+		  result_count = 10,
+		},
+		expensive =
+		{
+			enabled = false,
+			energy_required = 5,
+			ingredients = 
+			{
+			  {"firearm-magazine", 10},
+			  {"alien-artifact", 1},
+			},
+		  result = "ne-conversion-ammo",
+		  result_count = 10,
+		},
+	}, 	
+	
 	---- Bio Land Mine
 	{
 		type = "recipe",
@@ -127,7 +192,7 @@ data:extend({
 		},
 	}, 	
 	
-	--- Conversion Turret
+	--- Long Range Turret
   {
     type = "recipe",
     name = "NE_gun_turret",

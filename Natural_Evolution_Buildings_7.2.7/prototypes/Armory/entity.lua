@@ -12,7 +12,7 @@ end
 Bio_Ammo_Damage = settings.startup["NE_Bio_Ammo_Damage"].value
 
 
---- Bio Ammo
+ --Ammo
 data:extend({
 
 
@@ -107,6 +107,142 @@ data:extend({
 		stack_size = 200
   },
 
+   
+	--- Conversion Ammo
+	{
+		type = "ammo",
+		name = "ne-conversion-ammo",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/ne_ammo.png",
+		flags = {"goes-to-main-inventory"},
+		ammo_type =
+		{
+		  category = "bullet",
+		  action =
+		  {
+			type = "direct",
+			action_delivery =
+			{
+			  type = "instant",
+			  source_effects =
+			  {
+				  type = "create-explosion",
+				  entity_name = "explosion-gunshot",
+			  },
+			  target_effects =
+			  {
+				{
+				  type = "create-entity",
+				  entity_name = "explosion-hit"
+				},
+				{
+				  type = "damage",
+				  damage = { amount = 2 , type = "NE_Conversion"}		 
+				},
+			  }
+			}
+		  }
+		},
+		magazine_size = 10,
+		subgroup = "ammo",
+		order = "x[basic-clips]-b[piercing-rounds-magazine]-d[ne-conversion-ammo]",
+		stack_size = 400
+  },
+  
+	--- Basic Dart
+	{
+		type = "ammo",
+		name = "basic-dart-magazine",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/basic_dart_icon.png",
+		flags = {"goes-to-main-inventory"},
+		ammo_type =
+		{
+		  category = "Bio_Turret_Ammo",
+		  action =
+		  {
+			type = "direct",
+			action_delivery =
+			{
+			  type = "instant",
+			  source_effects =
+			  {
+				  type = "create-explosion",
+				  entity_name = "explosion-gunshot",
+			  },
+			  target_effects =
+			  {
+				{
+				  type = "create-entity",
+				  entity_name = "explosion-hit"
+				},
+				{
+				  type = "damage",
+				  
+				  damage = { amount = 1 , type = "poison"}
+				 
+				},
+				{
+				  type = "damage",
+				  damage = { amount = 2 , type = "physical"}
+				}
+			  }
+			}
+		  }
+		},
+		magazine_size = 10,
+		subgroup = "ammo",
+		order = "[aaa]-a[basic-clips]-aa[firearm-magazine]",
+		stack_size = 400
+  },
+  
+  
+	--- Enhanced Dart
+	{
+		type = "ammo",
+		name = "enhanced-dart-magazine",
+		icon = "__Natural_Evolution_Buildings__/graphics/icons/enhanced_dart_icon.png",
+		flags = {"goes-to-main-inventory"},
+		ammo_type =
+		{
+		  category = "Bio_Turret_Ammo",
+		  action =
+		  {
+			type = "direct",
+			action_delivery =
+			{
+			  type = "instant",
+			  source_effects =
+			  {
+				  type = "create-explosion",
+				  entity_name = "explosion-gunshot",
+			  },
+			  target_effects =
+			  {
+				{
+				  type = "create-entity",
+				  entity_name = "explosion-hit"
+				},
+				{
+				  type = "damage",
+				  
+				  damage = { amount = 1 , type = "poison"}
+				 
+				},
+				{
+				  type = "damage",
+				  damage = { amount = 2.5 , type = "bob-pierce"}
+				}
+			  }
+			}
+		  }
+		},
+		magazine_size = 10,
+		subgroup = "ammo",
+		order = "[aab]-a[basic-clips]-ab[firearm-magazine]",
+		stack_size = 400
+  },
+  
+
+  
 })
 
 
@@ -203,39 +339,15 @@ data:extend({
   	
 })
 
---[[
 
-function turret_pic(inputs)
-return
-{
-	layers = 
-	{
-		{
-			filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret.png",
-			priority = "medium",
-			scale = 0.5,
-			width = 224,
-			height = 160,
-			direction_count = inputs.direction_count and inputs.direction_count or 64,
-			frame_count = 1,
-			line_length = inputs.line_length and inputs.line_length or 8,
-			axially_symmetrical = false,
-			run_mode = inputs.run_mode and inputs.run_mode or "forward",
-			shift = { 0.5, 0 },
-		}
-	}
-}
-end
-]]
-
-
+--- NE Turret Pictires
 function base_picture()
 return
 {
 	layers =
 	{
 	  {
-		 filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png",
+		 filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_base.png",
 		 priority = "high",
 		 width = 256,
 		 height = 256,
@@ -247,6 +359,7 @@ return
  }
 end
 
+
 function preparing_animation()
 	return {layers = {{
 		priority = "medium",
@@ -257,7 +370,7 @@ function preparing_animation()
 		line_length = 8, -- folding[3],
 		run_mode = "forward",
 		axially_symmetrical = false,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png",
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
 		}}}
 end
 
@@ -270,7 +383,7 @@ function prepared_animation(frame_count)
 		frame_count = 1, -- -- always 1
 		line_length = 8, -- main [3],
 		axially_symmetrical = false,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png",
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png"
 		}}}
 end
 
@@ -284,7 +397,7 @@ function attacking_animation()
 		line_length = 8, -- main [3],
 		run_mode = "forward",
 		axially_symmetrical = false,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png",
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_main.png"
 		}}}
 end
 
@@ -298,7 +411,7 @@ function folding_animation()
 		line_length = 8, -- folding[3],
 		run_mode = "backward",
 		axially_symmetrical = false,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png",
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
 }}}
 end
 
@@ -312,7 +425,7 @@ function folded_animation()
 		line_length = 1,
 		run_mode = "forward",
 		axially_symmetrical = false,
-		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png",
+		filename = "__Natural_Evolution_Buildings__/graphics/entities/ne_turret/ne_turret_folding.png"
 		}}}
 end
 
@@ -359,10 +472,10 @@ data:extend({
 	collision_box = {{-1.4, -1.4 }, {1.4, 1.4}},
 	--selection_box = {{-1, -1 }, {1, 1}},
 	selection_box = {{-1.5, -1.5 }, {1.5, 1.5}},
-	rotation_speed = 0.002,
+	rotation_speed = 0.004,
 	prepare_range = 35,
-	preparing_speed = 0.006,
-	folding_speed = 0.006,
+	preparing_speed = 0.012,
+	folding_speed = 0.012,
 	dying_explosion = "medium-explosion",
 	inventory_size = 1,
 	automated_ammo_count = 10,
@@ -391,103 +504,6 @@ data:extend({
 
 	call_for_help_radius = 40
 	},
- 
- 
-	--- Basic Dart
-	{
-		type = "ammo",
-		name = "basic-dart-magazine",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/basic_dart_icon.png",
-		flags = {"goes-to-main-inventory"},
-		ammo_type =
-		{
-		  category = "Bio_Turret_Ammo",
-		  action =
-		  {
-			type = "direct",
-			action_delivery =
-			{
-			  type = "instant",
-			  source_effects =
-			  {
-				  type = "create-explosion",
-				  entity_name = "explosion-gunshot",
-			  },
-			  target_effects =
-			  {
-				{
-				  type = "create-entity",
-				  entity_name = "explosion-hit"
-				},
-				{
-				  type = "damage",
-				  
-				  damage = { amount = 1 , type = "poison"}
-				 
-				},
-				{
-				  type = "damage",
-				  damage = { amount = 2 , type = "physical"}
-				}
-			  }
-			}
-		  }
-		},
-		magazine_size = 10,
-		subgroup = "ammo",
-		order = "[aaa]-a[basic-clips]-aa[firearm-magazine]",
-		stack_size = 400
-  },
-  
-  
-	--- Enhanced Dart
-	{
-		type = "ammo",
-		name = "enhanced-dart-magazine",
-		icon = "__Natural_Evolution_Buildings__/graphics/icons/enhanced_dart_icon.png",
-		flags = {"goes-to-main-inventory"},
-		ammo_type =
-		{
-		  category = "Bio_Turret_Ammo",
-		  action =
-		  {
-			type = "direct",
-			action_delivery =
-			{
-			  type = "instant",
-			  source_effects =
-			  {
-				  type = "create-explosion",
-				  entity_name = "explosion-gunshot",
-			  },
-			  target_effects =
-			  {
-				{
-				  type = "create-entity",
-				  entity_name = "explosion-hit"
-				},
-				{
-				  type = "damage",
-				  
-				  damage = { amount = 1 , type = "poison"}
-				 
-				},
-				{
-				  type = "damage",
-				  damage = { amount = 2.5 , type = "bob-pierce"}
-				}
-			  }
-			}
-		  }
-		},
-		magazine_size = 10,
-		subgroup = "ammo",
-		order = "[aab]-a[basic-clips]-ab[firearm-magazine]",
-		stack_size = 400
-  },
-  
-
-
  
  --- Dart Turret
   {
