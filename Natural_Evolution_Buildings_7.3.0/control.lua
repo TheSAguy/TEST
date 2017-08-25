@@ -585,30 +585,33 @@ local function On_Death(event)
 
 	--- Conversion Turret
 	
-	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause then 
+	if event.force ~= nil and entity.force.name == "enemy" and  entity.type	 == "unit" and event.cause and event.cause.type == "ammo-turret" then 
 	
-		--if event.cause.name == "NE-gun-turret" then
+		local name = entity.name
 
-			local name = entity.name
-			local inventory = event.cause.get_inventory(1)
-			local inventoryContent = inventory.get_contents()		
-			local AmmoType
-			local Ammo = 0
-			
-			if inventoryContent ~= nil then
-				for n,a in pairs(inventoryContent) do
-					AmmoType=n
-					Ammo=a
+			local inventory = event.cause.get_inventory(defines.inventory.turret_ammo)
+
+			if inventory then
+
+				local inventoryContent = inventory.get_contents()		
+				local AmmoType
+				local Ammo = 0
+				
+				if inventoryContent ~= nil then
+					for n,a in pairs(inventoryContent) do
+						AmmoType=n
+						Ammo=a
+					end
 				end
-			end
-			
-			writeDebug("Ammo Type: " .. AmmoType)
-			--writeDebug("Ammo Count: " .. Ammo)
-			if AmmoType == "basic-dart-magazine_c"  or AmmoType == "enhanced-dart-magazine_c"  or AmmoType == "firearm-magazine_c"  or AmmoType == "copper-bullet-magazine_c"  or AmmoType == "piercing-rounds-magazine_c"  or AmmoType == "uranium-rounds-magazine_c"  or AmmoType == "Biological-bullet-magazine_c" then
-				Convert = surface.create_entity({name = name, position = pos, force = event.cause.force.name})
-				Convert.health = entity.prototype.max_health / 4
-			end
-			
+				
+				writeDebug("Ammo Type: " .. AmmoType)
+				writeDebug("Ammo Count: " .. Ammo)
+				if AmmoType == "basic-dart-magazine_c"  or AmmoType == "enhanced-dart-magazine_c"  or AmmoType == "firearm-magazine_c"  or AmmoType == "copper-bullet-magazine_c"  or AmmoType == "piercing-rounds-magazine_c"  or AmmoType == "uranium-rounds-magazine_c"  or AmmoType == "Biological-bullet-magazine_c" then
+					Convert = surface.create_entity({name = name, position = pos, force = event.cause.force.name})
+					Convert.health = entity.prototype.max_health / 4
+				end
+			end	
+
 	end
 	
 	

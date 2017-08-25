@@ -384,12 +384,16 @@ data:extend({
 				},
 				{
 				  type = "damage",
-				  damage = { amount = 4 , type = "physical"}
+				  damage = { amount = 4/2 , type = "physical"}
 				},
 				{
 				  type = "damage",
-				  damage = { amount = 1 , type = "bob-pierce"}
-				}
+				  damage = { amount = 1/2 , type = "bob-pierce"}
+				},
+				{
+				  type = "damage",
+				  damage = { amount = 1 , type = "NE_Conversion"}		 
+				},
 			  }
 			}
 		  }
