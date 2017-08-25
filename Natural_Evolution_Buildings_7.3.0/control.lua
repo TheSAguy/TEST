@@ -1,5 +1,5 @@
 local BUILDINGS_ver = '7.3.0'
-local QC_Mod = true
+local QC_Mod = false
 
 
 
