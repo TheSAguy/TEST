@@ -1,9 +1,0 @@
-{
-  "name": "CannonAlpha",
-  "version": "0.0.4",
-  "title": "Cannon Alpha",
-  "author": "darkfrei",
-  "description": "New cannon: Aplha Cannon. Long range, high damage, low rate of fire. Now avaible from the start. Needs bullets only.",
-  "dependencies": ["base"],
-  "factorio_version": "0.15"
-}
