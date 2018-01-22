@@ -49,8 +49,8 @@ Bi_Industries.fertility = {  -- out of 100, so 100 = always grow tree
 	["mineral-aubergine-dirt-7"] = 25,
 	["mineral-aubergine-dirt-8"] = 25,
 	["mineral-aubergine-dirt-9"] = 25,
-	["mineral-aubergine-sand-1"] = 45,
-	["mineral-aubergine-sand-2"] = 45,
+	["mineral-aubergine-sand-1"] = 15,
+	["mineral-aubergine-sand-2"] = 15,
 	["mineral-aubergine-sand-3"] = 10,
 	["mineral-beige-dirt-1"] = 45,
 	["mineral-beige-dirt-2"] = 45,
@@ -258,7 +258,15 @@ function is_value_as_index_in_table (value, tabl)
 end
 
 
-terrains = require("libs/trees-and-terrains")
+terrains = require("libs/trees-and-terrains_alien_boimes")
+--[[
+
+if game.active_mods["alien-biomes"] then
+	terrains = require("libs/trees-and-terrains_alien_boimes")
+else
+	terrains = require("libs/trees-and-terrains")
+end
+]]
 
 function summ_weight (tabl)
   local summ = 0
