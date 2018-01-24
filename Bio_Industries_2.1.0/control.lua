@@ -1,4 +1,4 @@
----Bio Industries - v.2.0.8
+---Bio Industries - v.2.1.0
 local QC_Mod = false
 require ("util")
 require ("libs/util_ext")
@@ -23,13 +23,20 @@ local function On_Init()
 	end
 	
 	
-
+	global.seed_bomb={}--this is used to define which equipment is put initially
+	global.seed_bomb["seedling"] = "seedling"
+	global.seed_bomb["seedling-2"] = "seedling-2"
+	global.seed_bomb["seedling-3"] = "seedling-3"
+	
 	-- enable researched recipes
 	for i, force in pairs(game.forces) do
 		force.reset_technologies()
 		force.reset_recipes()
 	end
 
+	
+	
+	
 end
 
 --------------------------------------------------------------------			 
@@ -56,6 +63,10 @@ local function On_Config_Change()
 		global.bi.terrains = {}
 	end
 
+	global.seed_bomb={}--this is used to define which equipment is put initially
+	global.seed_bomb["seedling"] = "seedling"
+	global.seed_bomb["seedling-2"] = "seedling-2"
+	global.seed_bomb["seedling-3"] = "seedling-3"
 
 	-- enable researched recipes
 	for i, force in pairs(game.forces) do
@@ -89,6 +100,70 @@ script.on_event(defines.events.on_player_joined_game, function(event)
    end
    
 end)
+
+
+
+---------------------------------------------
+script.on_event(defines.events.on_trigger_created_entity, function(event)
+	--- Used for Seed-bomb 
+	local ent=event.entity
+	local surface = ent.surface
+	local position = ent.position
+	local force = ent.force
+	local New_tiles = {}
+	
+    if global.seed_bomb[ent.name] then
+		writeDebug("Seed Bomb Activated")
+		seed_planted_trigger (event)
+		
+
+		
+    end
+	
+		if global.seed_bomb[ent.name] == "seedling-2" then
+			if game.active_mods["alien-biomes"] then 
+				table.insert(New_tiles, {name="vegetation-green-grass-3", position=position})   
+			else
+				table.insert(New_tiles, {name="grass-3", position=position})   
+			end
+		
+			surface.set_tiles(New_tiles)
+			
+			ent.destroy()
+			local create_seedling = surface.create_entity({name = "seedling", position = position, force = force})
+			
+
+			local fertility = 85				
+
+			
+			local max_grow_time = math.random(5000) + 600 --< Fertile tiles will grow faster than barren tiles
+			table.insert(global.bi.tree_growing, {position = position, time = event.tick + max_grow_time, surface = surface})
+			table.sort(global.bi.tree_growing, function(a, b) return a.time < b.time end)
+			
+		end
+		
+		if ent.valid and global.seed_bomb[ent.name] == "seedling-3" then
+			if game.active_mods["alien-biomes"] then 
+				table.insert(New_tiles, {name="vegetation-green-grass-1", position=position})   
+			else
+				table.insert(New_tiles, {name="grass-1", position=position})   
+			end  
+			
+			surface.set_tiles(New_tiles)
+			ent.destroy()
+			local create_seedling = surface.create_entity({name = "seedling", position = position, force = force})
+			
+			local fertility = 100
+			
+			local max_grow_time = math.random(5000) --< Fertile tiles will grow faster than barren tiles
+			table.insert(global.bi.tree_growing, {position = position, time = event.tick + max_grow_time, surface = surface})
+			table.sort(global.bi.tree_growing, function(a, b) return a.time < b.time end)
+			
+		end
+	
+end)
+
+
 
 
 --------------------------------------------------------------------
@@ -381,10 +456,9 @@ local function Player_Tile_Built(event)
 
 	local player = game.players[event.player_index]
 	local surface = player and player.surface
-	local position = event.positions
 
-
-	for i, position in ipairs(position) do
+	for i, vv in ipairs(event.tiles) do
+		local position = vv.position
 		local currentTilename = surface.get_tile(position.x,position.y).name
 		
 		if currentTilename == "bi-solar-mat" then
@@ -444,17 +518,16 @@ end
 	
 local function Robot_Tile_Built(event)
 
-
 	local robot = event.robot
 	local surface = robot.surface
-	local position = event.positions
 	
 	-- fix #2 Error while running event Bio_Industries::on_robot_built_tile
 	if surface == nil then
 		return
 	end
 	
-	for i, position in ipairs(position) do
+	for i, vv in ipairs(event.tiles) do
+	local position = vv.position
 		local currentTilename = surface.get_tile(position.x,position.y).name
 		
 		if currentTilename == "bi-solar-mat" then
