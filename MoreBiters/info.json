@@ -1,0 +1,11 @@
+{
+  "name": "MoreBiters",
+  "version": "1.2.3",
+  "title": "MoreBiters",
+  "author": "Sovereign9000",
+  "contact": "",
+  "homepage": "",
+  "factorio_version": "0.16",
+  "dependencies": ["base >= 0.16"],
+  "description": "Adds more variety to biters."
+}
