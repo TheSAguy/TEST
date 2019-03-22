@@ -1,6 +1,6 @@
 --control.lua
 
-VERSION = "1.2.3"
+VERSION = "1.3.0"
 PREFIX = "more-biters-"
 
 deathExplosions = {}
@@ -44,9 +44,6 @@ function noSeismic(pos)
     if (ent.valid) then
       local distance = (ent.position.x - pos.x) ^ 2 + (ent.position.y - pos.y) ^ 2
       if (distance <= 900) then -- 30^2 since seismic range is 30
-        for _, player in pairs(game.players) do
-          player.print("blocked tunnel")
-        end
         return false
       end
     end
@@ -106,10 +103,12 @@ function nameToSize(name)
   end
 end
 
-function clearLeechDrains()
+function clearLeechDrains(entity)
   for _, struct in pairs(global[PREFIX .. "leech-drains"]) do
-    struct[2].destroy()
-    struct = nil
+    if (struct[1] == entity) then
+      struct[2].destroy()
+      struct = nil
+    end
   end
 end
 

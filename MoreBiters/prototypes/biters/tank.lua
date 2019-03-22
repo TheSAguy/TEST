@@ -12,7 +12,7 @@ bi.type = "unit"
 tintSprite(bi, tint)
 
 -- really tough
-bi.max_health = 8000
+bi.max_health = 6000
 bi.resistances = {
   {
     decrease = 5,

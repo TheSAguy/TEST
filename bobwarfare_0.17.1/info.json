@@ -1,0 +1,11 @@
+{
+  "name": "bobwarfare",
+  "version": "0.17.1",
+  "factorio_version": "0.17",
+  "title": "Bob's Warfare",
+  "author": "Bobingabout",
+  "contact": "robertagius@hotmail.com",
+  "homepage": "https://forums.factorio.com/viewforum.php?f=51",
+  "description": "Make things for warfare.",
+  "dependencies": ["base >= 0.17.0", "boblibrary >= 0.17.0", "? bobplates >= 0.17.0", "? boblogistics >= 0.17.0", "? bobenemies >= 0.17.0"]
+}

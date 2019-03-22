@@ -1,0 +1,8 @@
+﻿---------------------------------------------------------------------------------------------------
+Version: 0.16.4
+Date: 20. 02. 2018
+  Ballance:
+    - Added darkness_to_turn_on to nightvision. MK3 should come on as it starts to get dark for a never ending daytime feeling.
+  Additions:
+    - Added fuel value of 1.46MJ to glycerol. (for future use)
+    - Added Uranium shotgun shells.

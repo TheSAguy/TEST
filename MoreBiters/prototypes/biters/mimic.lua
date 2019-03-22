@@ -15,9 +15,9 @@ for size, sizeMod in pairs(sizes) do
 
   -- fast, strong, tough... all around terrifying
   bi.movement_speed = 0.33
-  bi.max_health = bi.max_health * 3
+  bi.max_health = bi.max_health * 2
   local dmg = bi.attack_parameters.ammo_type.action.action_delivery.target_effects.damage 
-  dmg.amount = dmg.amount*5
+  dmg.amount = dmg.amount*2
 
   -- never stop chasing
   bi.max_pursue_distance = 9999999
